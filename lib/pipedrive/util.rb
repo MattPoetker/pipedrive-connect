@@ -14,6 +14,7 @@ module Pipedrive
       when 404
         raise NotFoundError.new(response.dig(:error), status)
       else
+        puts response.dig(:error_info)
         raise UnkownAPIError.new(response.dig(:error), status)
       end
     end
