@@ -2,7 +2,7 @@
 
 module Pipedrive
 
-  class Lead < Deal
+  class Lead < Resource
     include Fields
 
     def self.fields_url
@@ -17,6 +17,15 @@ module Pipedrive
         search_for_fields(params)
       )
       new(response.dig(:data))
+    end
+
+    def update(params)
+      response = request(
+        :patch,
+        resource_url,
+        params
+      )
+      update_attributes(response.dig(:data))
     end
 
     def self.search(term, params = {})

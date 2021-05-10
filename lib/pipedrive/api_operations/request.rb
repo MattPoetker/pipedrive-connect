@@ -11,7 +11,7 @@ module Pipedrive
         def request(method, url, params = {})
           check_api_key!
           raise "Not supported method" \
-            unless %i[get post put delete].include?(method)
+            unless %i[get post put patch delete].include?(method)
 
           Util.debug "#{name} #{method.upcase} #{url}"
 
