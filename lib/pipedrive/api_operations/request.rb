@@ -18,7 +18,7 @@ module Pipedrive
           response = api_client.send(method) do |req|
             req.url url
             req.params = params.merge(api_token: Pipedrive.api_key)
-            req.body = params.to_json if %i[post put].include?(method)
+            req.body = params.to_json if %i[post put patch].include?(method)
           end
           Util.serialize_response(response)
         end
